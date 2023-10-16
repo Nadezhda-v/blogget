@@ -1,0 +1,2 @@
+# blogget
+Учебный проект "Blogget"
