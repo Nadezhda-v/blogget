@@ -3,7 +3,7 @@ import Post from './Post';
 
 export const List = () => {
   const postData = {
-    avatar: '',
+    preview: '',
     title: 'Title',
     author: 'Nickname',
     ups: 10,

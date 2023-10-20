@@ -1,6 +1,6 @@
 import style from './Post.module.css';
 import PropTypes from 'prop-types';
-import Avatar from './Avatar';
+import Preview from './Preview';
 import Author from './Author';
 import Raiting from './Raiting';
 import Title from './Title';
@@ -11,7 +11,7 @@ export const Post = ({ postData }) => {
 
   return (
     <li className={style.post}>
-      <Avatar title={title} />
+      <Preview title={title} />
 
       <div className={style.content}>
         <Title title={title} />
