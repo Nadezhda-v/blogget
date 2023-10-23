@@ -1,8 +1,8 @@
 import style from './Logo.module.css';
-import logo from './img/logo.svg';
+import { SvgIcon } from '../../../UI/Svg';
 
 export const Logo = () => (
   <a className={style.link} href='/'>
-    <img className={style.logo} src={logo} alt='Логотип' />
+    <SvgIcon className={style.logo} src='./img/header/logo.svg' />
   </a>
 );

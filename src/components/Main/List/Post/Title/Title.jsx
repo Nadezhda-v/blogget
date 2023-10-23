@@ -1,12 +1,20 @@
 import style from './Title.module.css';
 import PropTypes from 'prop-types';
+import { Text } from '../../../../../UI/Text';
 
 export const Title = ({ title }) => (
-  <h2 className={style.title}>
-    <a className={style.linkPost} href='#post'>
+  <Text As='h2' className={style.title}>
+    <Text
+      As='a'
+      size={18}
+      tsize={26}
+      fontWeight='bold'
+      className={style.linkPost}
+      href='#post'
+    >
       {title}
-    </a>
-  </h2>
+    </Text>
+  </Text>
 );
 
 Title.propTypes = {
