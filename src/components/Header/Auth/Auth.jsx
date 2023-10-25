@@ -1,16 +1,17 @@
 import style from './Auth.module.css';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { SvgIcon } from '../../../UI/Svg';
 import { Text } from '../../../UI/Text';
 import { URL } from '../../../api/constants';
 import urlAuth from '../../../api/auth';
 import useAuth from '../../../hooks/useAuth';
+import { tokenContext } from '../../../context/tokenContext';
 
-export const Auth = ({ token, delToken }) => {
+export const Auth = () => {
+  const { token, delToken } = useContext(tokenContext);
   const [isLogoutVisible, setLogoutVisible] = useState(false);
-  const { auth, setAuth } = useAuth(token, `${URL}/api/v1/me`);
+  const { auth, clearAuth } = useAuth(token, `${URL}/api/v1/me`);
 
   const handleAvatarClick = () => {
     setLogoutVisible(!isLogoutVisible);
@@ -18,7 +19,7 @@ export const Auth = ({ token, delToken }) => {
 
   const handleDelToken = () => {
     delToken();
-    setAuth({});
+    clearAuth();
   };
 
   return (
@@ -48,9 +49,4 @@ export const Auth = ({ token, delToken }) => {
         )}
     </div>
   );
-};
-
-Auth.propTypes = {
-  token: PropTypes.string,
-  delToken: PropTypes.func,
 };

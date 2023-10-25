@@ -19,7 +19,11 @@ const useAuth = (token, URL) => {
       .catch(() => setAuth({}));
   }, [token]);
 
-  return { auth, setAuth };
+  const clearAuth = () => {
+    setAuth({});
+  };
+
+  return { auth, clearAuth };
 };
 
 export default useAuth;
