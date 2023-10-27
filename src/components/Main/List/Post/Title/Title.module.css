@@ -4,7 +4,7 @@
   -webkit-box-orient: vertical;
   display: -webkit-box;
   margin-bottom: 10px;
-  transition: color 0.36s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 .linkPost:after {
@@ -12,7 +12,7 @@
   position: absolute;
   inset: 0;
   border-radius: 20px;
-  transition: box-shadow 0.36s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 @media (min-width: 580px) {

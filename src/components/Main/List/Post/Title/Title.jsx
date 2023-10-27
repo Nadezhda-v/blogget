@@ -7,7 +7,7 @@ export const Title = ({ title }) => (
     <Text
       As='a'
       size={18}
-      tsize={26}
+      tsize={22}
       fontWeight='bold'
       className={style.linkPost}
       href='#post'

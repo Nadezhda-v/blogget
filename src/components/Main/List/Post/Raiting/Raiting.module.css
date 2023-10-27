@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
   justify-content: center;
   padding-right: 10px;
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .up,
@@ -17,12 +17,14 @@
   border: 0;
   background-color: transparent;
   background-size: 100%;
-  transition: background-color 0.36s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
+
 .up:active,
 .down:active {
   background-color: #ff9966;
 }
+
 .up {
   background-image: url('./img/up.svg');
 }
@@ -43,8 +45,8 @@
   .down {
     width: 24px;
     height: 24px;
-    transition: outline-color 0.36s ease-in-out,
-      background-color 0.36s ease-in-out;
+    transition: outline-color 0.3s ease-in-out,
+      background-color 0.3s ease-in-out;
     outline: 1px solid transparent;
     border-radius: 50%;
     outline-offset: 3px;

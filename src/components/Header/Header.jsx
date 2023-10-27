@@ -12,7 +12,7 @@ export const Header = () => (
         <Logo />
         <Heading text='Главная' />
         <Search />
-        <Auth auth={false} />
+        <Auth />
       </div>
     </Layout>
   </header>

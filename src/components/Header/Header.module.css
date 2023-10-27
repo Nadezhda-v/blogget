@@ -17,7 +17,7 @@
   }
 
   .gridContainer {
-    grid-template-columns: 50px 1fr 2fr 50px;
-    gap: 30px;
+    grid-template-columns: 55px 1fr 2fr 55px;
+    gap: 50px;
   }
 }
