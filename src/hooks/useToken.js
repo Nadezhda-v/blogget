@@ -16,8 +16,8 @@ export const useToken = (state) => {
       setToken(token);
     }
 
-    if (localStorage.getItem('bearer', token)) {
-      setToken(localStorage.getItem('bearer', token));
+    if (localStorage.getItem('bearer')) {
+      setToken(localStorage.getItem('bearer'));
     }
   }, []);
 

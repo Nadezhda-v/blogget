@@ -3,15 +3,16 @@ import { useState, useContext } from 'react';
 
 import { SvgIcon } from '../../../UI/Svg';
 import { Text } from '../../../UI/Text';
-import { URL } from '../../../api/constants';
 import urlAuth from '../../../api/auth';
-import useAuth from '../../../hooks/useAuth';
+import { authContext } from '../../../context/authContext';
 import { tokenContext } from '../../../context/tokenContext';
+import { postsContext } from '../../../context/postsContext';
 
 export const Auth = () => {
-  const { token, delToken } = useContext(tokenContext);
+  const { delToken } = useContext(tokenContext);
+  const { auth, clearAuth } = useContext(authContext);
+  const { clearPosts } = useContext(postsContext);
   const [isLogoutVisible, setLogoutVisible] = useState(false);
-  const { auth, clearAuth } = useAuth(token, `${URL}/api/v1/me`);
 
   const handleAvatarClick = () => {
     setLogoutVisible(!isLogoutVisible);
@@ -20,6 +21,7 @@ export const Auth = () => {
   const handleDelToken = () => {
     delToken();
     clearAuth();
+    clearPosts();
   };
 
   return (

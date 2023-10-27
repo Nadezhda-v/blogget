@@ -48,7 +48,7 @@
   outline: 2px solid transparent;
   border-radius: 50%;
   outline-offset: 2px;
-  transition: outline-color 0.36s ease-in-out;
+  transition: outline-color 0.3s ease-in-out;
 }
 
 .authLink:hover {

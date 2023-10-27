@@ -8,11 +8,11 @@ import Date from './Date';
 import { ReactComponent as DeleteIcon } from './img/delete.svg';
 
 export const Post = ({ postData }) => {
-  const { title, author, ups, date } = postData;
+  const { thumbnail, title, author, ups, created: date } = postData;
 
   return (
     <li className={style.post}>
-      <Preview title={title} />
+      <Preview thumbnail={thumbnail} title={title} />
 
       <div className={style.content}>
         <Title title={title} />

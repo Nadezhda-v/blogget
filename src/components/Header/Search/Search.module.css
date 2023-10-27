@@ -23,7 +23,7 @@
   right: 7px;
   top: 50%;
   transform: translateY(-50%);
-  transition: color 0.36s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 .svg {
@@ -49,6 +49,10 @@
 }
 
 @media (min-width: 1024px) {
+  .form {
+    max-width: 800px;
+  }
+
   .search {
     font-size: 20px;
     padding: 5px 25px;
