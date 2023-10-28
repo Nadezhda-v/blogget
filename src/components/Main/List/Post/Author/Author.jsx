@@ -6,7 +6,7 @@ export const Author = ({ author }) => (
   <Text
     As='a'
     color='orange'
-    size={12}
+    size={10}
     tsize={14}
     className={style.linkAuthor}
     href='#author'

@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import urlBestPosts from '../api/bestPosts';
 import { tokenContext } from '../context/tokenContext';
-// import useAuth from './useAuth';
 
 const usePosts = () => {
   const [posts, setPosts] = useState([]);
