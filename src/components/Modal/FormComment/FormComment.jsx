@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import style from './FormComment.module.css';
 
 export const FormComment = () => {
@@ -8,6 +8,10 @@ export const FormComment = () => {
     e.preventDefault();
     console.log(textRef.current.value);
   };
+
+  useEffect(() => {
+    textRef.current.focus();
+  }, []);
 
   return (
     <form className={style.form} onSubmit={handleFormSubmit}>

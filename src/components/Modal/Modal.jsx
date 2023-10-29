@@ -3,7 +3,7 @@ import { SvgIcon } from '../../UI/Svg';
 import PropTypes from 'prop-types';
 import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useCommentsData from '../../hooks/useCommentsData';
 import FormComment from './FormComment';
 import Comments from './Comments';
@@ -11,6 +11,8 @@ import Comments from './Comments';
 export const Modal = ({ id, closeModal }) => {
   const overlayRef = useRef(null);
   const [[post, comments]] = useCommentsData(id);
+  const [showFormComment, setShowFormComment] = useState(false);
+  const [showButton, setShowButton] = useState(true);
 
   const handleCloseOverlay = (e) => {
     const target = e.target;
@@ -32,6 +34,11 @@ export const Modal = ({ id, closeModal }) => {
       document.removeEventListener('keydown', handleCloseOverlay);
     };
   }, []);
+
+  const handleDisplayForm = () => {
+    setShowFormComment(true);
+    setShowButton(false);
+  };
 
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
@@ -55,7 +62,13 @@ export const Modal = ({ id, closeModal }) => {
 
             <p className={style.author}>{post.author}</p>
 
-            <FormComment />
+            {showButton && (
+              <button className={style.btn} onClick={handleDisplayForm}>
+                Написать комментарий
+              </button>
+            )}
+
+            {showFormComment && <FormComment />}
             <Comments comments={comments} />
           </>
         ) : (<span>Загрузка...</span>)}

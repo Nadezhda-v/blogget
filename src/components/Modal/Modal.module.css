@@ -49,6 +49,16 @@
   height: 15px;
 }
 
+.btn {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  outline: none;
+  background-color: var(--orange);
+  color: var(--white);
+  border: 1px solid transparent
+}
+
 @media (min-width: 768px) {
   .modal {
     padding: 30px;
