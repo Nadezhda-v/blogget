@@ -4,14 +4,15 @@ import { useState, useContext } from 'react';
 import { SvgIcon } from '../../../UI/Svg';
 import { Text } from '../../../UI/Text';
 import urlAuth from '../../../api/auth';
-import { authContext } from '../../../context/authContext';
+import useAuth from '../../../hooks/useAuth';
 import { postsContext } from '../../../context/postsContext';
-import { deleteToken } from '../../../store';
+import { deleteToken } from '../../../store/tokenReducer';
 import { useDispatch } from 'react-redux';
+import DotLoader from 'react-spinners/DotLoader';
 
 export const Auth = () => {
   const dispatch = useDispatch();
-  const { auth, clearAuth } = useContext(authContext);
+  const [loading, auth, clearAuth] = useAuth();
   const { clearPosts } = useContext(postsContext);
   const [isLogoutVisible, setLogoutVisible] = useState(false);
 
@@ -27,7 +28,9 @@ export const Auth = () => {
 
   return (
     <div className={style.container}>
-      {auth.name ?
+      {loading ? (
+        <DotLoader color='#cc6633' css={{ display: 'block' }} size={40} />
+      ) : auth.name ?
         (<div className={style.btn} onClick={handleAvatarClick}>
           <img
             className={style.img}
