@@ -27,6 +27,7 @@ export const Post = ({ postData }) => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    window.history.replaceState({}, document.title, '/');
   };
 
   return (
