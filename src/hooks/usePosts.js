@@ -1,13 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import urlBestPosts from '../api/bestPosts';
-import { tokenContext } from '../context/tokenContext';
-// import useAuth from './useAuth';
+import { useSelector } from 'react-redux';
 
 const usePosts = () => {
   const [posts, setPosts] = useState([]);
-  const { token } = useContext(tokenContext);
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
+    if (!token) return;
+
     fetch(urlBestPosts, {
       headers: {
         'Content-Type': 'application/json',

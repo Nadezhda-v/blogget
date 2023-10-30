@@ -5,11 +5,12 @@ import { SvgIcon } from '../../../UI/Svg';
 import { Text } from '../../../UI/Text';
 import urlAuth from '../../../api/auth';
 import { authContext } from '../../../context/authContext';
-import { tokenContext } from '../../../context/tokenContext';
 import { postsContext } from '../../../context/postsContext';
+import { deleteToken } from '../../../store';
+import { useDispatch } from 'react-redux';
 
 export const Auth = () => {
-  const { delToken } = useContext(tokenContext);
+  const dispatch = useDispatch();
   const { auth, clearAuth } = useContext(authContext);
   const { clearPosts } = useContext(postsContext);
   const [isLogoutVisible, setLogoutVisible] = useState(false);
@@ -18,8 +19,8 @@ export const Auth = () => {
     setLogoutVisible(!isLogoutVisible);
   };
 
-  const handleDelToken = () => {
-    delToken();
+  const handleLogout = () => {
+    dispatch(deleteToken());
     clearAuth();
     clearPosts();
   };
@@ -35,12 +36,14 @@ export const Auth = () => {
             alt='Аватар'
           />
 
-          <button
-            className={`${style.logout} ${isLogoutVisible ? '' : style.hide}`}
-            onClick={handleDelToken}
-          >
-            {'Выйти'}
-          </button>
+          {isLogoutVisible && (
+            <button
+              className={style.logout}
+              onClick={handleLogout}
+            >
+              {'Выйти'}
+            </button>
+          )}
         </div>) :
         (<Text className={style.authLink} As='a' href={urlAuth}>
           <SvgIcon
