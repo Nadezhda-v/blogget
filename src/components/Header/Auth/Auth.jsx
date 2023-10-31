@@ -1,19 +1,19 @@
 import style from './Auth.module.css';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
 import { SvgIcon } from '../../../UI/Svg';
 import { Text } from '../../../UI/Text';
 import urlAuth from '../../../api/auth';
 import useAuth from '../../../hooks/useAuth';
-import { postsContext } from '../../../context/postsContext';
 import { deleteToken } from '../../../store/tokenReducer';
 import { useDispatch } from 'react-redux';
-import DotLoader from 'react-spinners/DotLoader';
+import Preloader from '../../../UI/Preloader';
+import usePosts from '../../../hooks/usePosts';
 
 export const Auth = () => {
   const dispatch = useDispatch();
   const [loading, auth, clearAuth] = useAuth();
-  const { clearPosts } = useContext(postsContext);
+  const { clearPosts } = usePosts();
   const [isLogoutVisible, setLogoutVisible] = useState(false);
 
   const handleAvatarClick = () => {
@@ -29,7 +29,7 @@ export const Auth = () => {
   return (
     <div className={style.container}>
       {loading ? (
-        <DotLoader color='#cc6633' css={{ display: 'block' }} size={40} />
+        <Preloader color={'#cc6633'} size={40} />
       ) : auth.name ?
         (<div className={style.btn} onClick={handleAvatarClick}>
           <img

@@ -9,7 +9,7 @@ const updateComment = (comment) => ({
   comment,
 });
 
-const commentReducer = (state = initinalState, action) => {
+const formCommentReducer = (state = initinalState, action) => {
   switch (action.type) {
     case UPDATE_COMMENT:
       return {
@@ -24,5 +24,5 @@ const commentReducer = (state = initinalState, action) => {
 
 export {
   updateComment,
-  commentReducer,
+  formCommentReducer,
 };

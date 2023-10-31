@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react';
 import style from './FormComment.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateComment } from '../../../store/commentReducer';
+import { updateComment } from '../../../store/formCommentReducer';
 
 export const FormComment = () => {
-  const textComment = useSelector((state) => state.commentReducer.comment);
+  const textComment = useSelector((state) => state.formCommentReducer.comment);
   const dispatch = useDispatch();
   const textRef = useRef(null);
 

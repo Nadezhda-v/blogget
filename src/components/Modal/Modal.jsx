@@ -7,10 +7,12 @@ import { useEffect, useRef, useState } from 'react';
 import useCommentsData from '../../hooks/useCommentsData';
 import FormComment from './FormComment';
 import Comments from './Comments';
+import Preloader from '../../UI/Preloader';
+import { Text } from '../../UI/Text';
 
 export const Modal = ({ id, closeModal }) => {
   const overlayRef = useRef(null);
-  const [[post, comments]] = useCommentsData(id);
+  const [[post, comments], status] = useCommentsData(id);
   const [showFormComment, setShowFormComment] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
@@ -43,7 +45,15 @@ export const Modal = ({ id, closeModal }) => {
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        {post && comments ? (
+        {status === 'loading' && (
+          <Preloader color={'#cc6633'} size={60} />
+        )}
+        {status === 'error' && (
+          <Text size={14} tsize={18}>
+            Возникла ошибка при загрузке постов
+          </Text>
+        )}
+        {status === 'loaded' && (
           <>
             <h2 className={style.title}>{post.title}</h2>
             <div className={style.content}>
@@ -71,7 +81,7 @@ export const Modal = ({ id, closeModal }) => {
             {showFormComment && <FormComment />}
             <Comments comments={comments} />
           </>
-        ) : (<span>Загрузка...</span>)}
+        )}
 
         <button className={style.close} onClick={handleButtonClose}>
           <SvgIcon
