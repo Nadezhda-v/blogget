@@ -1,40 +1,25 @@
-import { useState, useEffect } from 'react';
-import urlBestPosts from '../api/bestPosts';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  postsClear,
+  postsRequestAsync,
+} from '../store/posts/postsAction';
 
 const usePosts = () => {
-  const [posts, setPosts] = useState([]);
-  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.tokenReducer.token);
+  const posts = useSelector((state) => state.posts.data);
+  const loading = useSelector((state) => state.posts.loading);
 
   useEffect(() => {
-    if (!token) return;
-
-    fetch(urlBestPosts, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (response.headers.get('content-type').includes('text/html')) {
-          throw new Error(response.text);
-        }
-
-        return response.json();
-      })
-      .then(({ data }) => {
-        setPosts(data.children);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(postsRequestAsync());
   }, [token]);
 
   const clearPosts = () => {
-    setPosts([]);
+    dispatch(postsClear());
   };
 
-  return { posts, clearPosts };
+  return { loading, posts, clearPosts };
 };
 
 export default usePosts;
