@@ -1,0 +1,33 @@
+.container {
+  position: relative;
+  z-index: 10;
+  padding-top: 20px;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 2px 2px 4px rgb(255, 255, 255);
+}
+
+.text {
+  font-size: 1.5rem;
+  color: #ffffff;
+  padding: 20px 0 0 220px;
+  text-shadow: 2px 2px 4px rgb(16, 16, 16);
+  max-width: 500px;
+  text-indent: -10rem;
+}
+
+@media (max-width: 580px) {
+  .title {
+    font-size: 3rem;
+  }
+  
+  .text {
+    font-size: 1.1rem;
+    padding: 20px 0 0 0px;
+    text-indent: 0rem;
+  }
+}

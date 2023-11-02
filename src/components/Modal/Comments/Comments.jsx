@@ -4,7 +4,7 @@ import { formatDateOfComment } from '../../../utils/formatDate';
 
 export const Comments = ({ comments }) => (
   <ul className={style.list}>
-    {comments ? (
+    {comments.length ? (
       comments.map(({ id, author, body: text, created: date }) => {
         if (text && !text.includes('[')) {
           return (

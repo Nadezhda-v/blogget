@@ -6,8 +6,6 @@ import Raiting from './Raiting';
 import Title from './Title';
 import Date from './Date';
 import { ReactComponent as DeleteIcon } from './img/delete.svg';
-import { useState } from 'react';
-import Modal from '../../../Modal';
 
 export const Post = ({ postData }) => {
   const {
@@ -19,23 +17,13 @@ export const Post = ({ postData }) => {
     id,
   } = postData;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleTitleClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    window.history.replaceState({}, document.title, '/');
-  };
 
   return (
     <li className={style.post}>
       <Preview thumbnail={thumbnail} title={title} />
 
       <div className={style.content}>
-        <Title title={title} onClick={handleTitleClick}/>
+        <Title title={title} id={id} />
         <Author author={author} />
       </div>
 
@@ -45,11 +33,6 @@ export const Post = ({ postData }) => {
       <button className={style.delete}>
         <DeleteIcon />
       </button>
-
-      {isModalOpen && <Modal
-        id={id}
-        closeModal={handleCloseModal}
-      />}
     </li>
   );
 };
