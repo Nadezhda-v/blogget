@@ -1,6 +1,4 @@
 import style from './Modal.module.css';
-import { SvgIcon } from '../../UI/Svg';
-import PropTypes from 'prop-types';
 import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
@@ -9,22 +7,26 @@ import FormComment from './FormComment';
 import Comments from './Comments';
 import Preloader from '../../UI/Preloader';
 import { Text } from '../../UI/Text';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ReactComponent as CloseIcon } from './img/close.svg';
 
-export const Modal = ({ id, closeModal }) => {
+export const Modal = () => {
+  const { id, page } = useParams();
+  const navigate = useNavigate();
   const overlayRef = useRef(null);
   const [[post, comments], status] = useCommentsData(id);
   const [showFormComment, setShowFormComment] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
+  const handleButtonClose = () => {
+    navigate(`/category/${page}`);
+  };
+
   const handleCloseOverlay = (e) => {
     const target = e.target;
     if (target === overlayRef.current || e.key === 'Escape') {
-      closeModal();
+      handleButtonClose();
     }
-  };
-
-  const handleButtonClose = () => {
-    closeModal();
   };
 
   useEffect(() => {
@@ -84,17 +86,10 @@ export const Modal = ({ id, closeModal }) => {
         )}
 
         <button className={style.close} onClick={handleButtonClose}>
-          <SvgIcon
-            src='./img/modal/close.svg'
-          />
+          <CloseIcon />
         </button>
       </div>
     </div>,
     document.getElementById('modal-root')
   );
-};
-
-Modal.propTypes = {
-  id: PropTypes.string,
-  closeModal: PropTypes.func,
 };

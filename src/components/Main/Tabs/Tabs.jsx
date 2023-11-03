@@ -6,18 +6,20 @@ import { assignId } from '../../../utils/generateRandomId';
 import { debounceRaf } from '../../../utils/debounce';
 import { SvgIcon } from '../../../UI/Svg';
 import { Text } from '../../../UI/Text';
+import { useNavigate } from 'react-router-dom';
 
-const LIST = [
-  { value: 'Главная', Icon: './img/home.svg' },
-  { value: 'Топ', Icon: './img/top.svg' },
-  { value: 'Лучшие', Icon: './img/best.svg' },
-  { value: 'Горячие', Icon: './img/hot.svg' },
+export const LIST = [
+  { value: 'Главная', Icon: './img/home.svg', link: 'rising' },
+  { value: 'Топ', Icon: './img/top.svg', link: 'top' },
+  { value: 'Лучшие', Icon: './img/best.svg', link: 'best' },
+  { value: 'Горячие', Icon: './img/hot.svg', link: 'hot' },
 ].map(assignId);
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState('Выберите раздел');
+  const navigate = useNavigate();
 
   const handleResize = () => {
     document.documentElement.clientWidth < 768 ? setIsDropdown(true) :
@@ -54,7 +56,7 @@ export const Tabs = () => {
       {(isDropdownOpen || !isDropdown) && (
         <ul className={style.list} onClick={() => setIsDropdownOpen(false)}>
           {
-            LIST.map(({ value, id, Icon }) => (
+            LIST.map(({ value, id, Icon, link }) => (
               <Text
                 As='li'
                 className={style.item}
@@ -63,7 +65,10 @@ export const Tabs = () => {
                 <Text
                   As='button'
                   className={style.btn}
-                  onClick={() => handleSelectSection(value)}
+                  onClick={() => {
+                    handleSelectSection(value);
+                    navigate(`/category/${link}`);
+                  }}
                 >
                   {value}
                   {Icon && <SvgIcon src={Icon} className={style.svg} />}

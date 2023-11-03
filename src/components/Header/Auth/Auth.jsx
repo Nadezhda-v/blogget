@@ -9,12 +9,14 @@ import { deleteToken } from '../../../store/tokenReducer';
 import { useDispatch } from 'react-redux';
 import Preloader from '../../../UI/Preloader';
 import usePosts from '../../../hooks/usePosts';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const dispatch = useDispatch();
   const [loading, auth, clearAuth] = useAuth();
   const { clearPosts } = usePosts();
   const [isLogoutVisible, setLogoutVisible] = useState(false);
+  const navigate = useNavigate();
 
   const handleAvatarClick = () => {
     setLogoutVisible(!isLogoutVisible);
@@ -24,6 +26,7 @@ export const Auth = () => {
     dispatch(deleteToken());
     clearAuth();
     clearPosts();
+    navigate('/');
   };
 
   return (

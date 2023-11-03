@@ -1,46 +1,44 @@
 import axios from 'axios';
-import urlBestPosts from '../../api/bestPosts';
+import { URL } from '../../api/constants';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const POSTS_REQUEST = 'POSTS_REQUEST';
-export const POSTS_REQUEST_SUCCESS = 'POSTS_REQUEST_SUCCESS';
-export const POSTS_REQUEST_ERROR = 'POSTS_REQUEST_ERROR';
-export const POSTS_CLEAR = 'POSTS_REQUEST_CLEAR';
+export const postsRequestAsync = createAsyncThunk(
+  'posts/axios',
+  (newPage, { getState }) => {
+    let page = getState().posts.page;
 
-export const postsRequest = () => ({
-  type: POSTS_REQUEST,
-});
+    if (newPage) {
+      page = newPage;
+    }
 
-export const postsRequestSuccess = (data) => ({
-  type: POSTS_REQUEST_SUCCESS,
-  data,
-});
+    const prevPosts = getState().posts.data;
+    const token = getState().tokenReducer.token;
+    const after = getState().posts.after;
+    const isLast = getState().posts.isLast;
 
-export const postsRequestError = (error) => ({
-  type: POSTS_REQUEST_ERROR,
-  error,
-});
+    if (!token || isLast) {
+      return { data: prevPosts, after, page };
+    }
 
-export const postsClear = () => ({
-  type: POSTS_CLEAR,
-});
-
-export const postsRequestAsync = () => (dispatch, getState) => {
-  const token = getState().tokenReducer.token;
-
-  if (!token) return;
-  dispatch(postsRequest());
-
-  axios(urlBestPosts, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `bearer ${token}`,
-    },
-  })
-    .then(({ data: { data: { children } } }) => {
-      dispatch(postsRequestSuccess(children));
+    return axios(`${URL}/${page}?limit=10${after ? `&after=${after}` : ''}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${token}`,
+      },
     })
-    .catch((err) => {
-      console.log(err);
-      dispatch(postsRequestError(err.message));
-    });
-};
+      .then(({ data: { data } }) => {
+        let newPosts = data.children;
+
+        if (after) {
+          newPosts = [...prevPosts, ...newPosts];
+        }
+
+        return ({
+          data: newPosts,
+          after: data.after,
+          page,
+        });
+      })
+      .catch((error) => ({ error: error.message }));
+  }
+);
