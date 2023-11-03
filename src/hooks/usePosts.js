@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  postsClear,
-  postsRequestAsync,
-} from '../store/posts/postsAction';
+import { postsRequestAsync } from '../store/posts/postsAction';
+import { postsSlice } from '../store/posts/postsSlice';
 
 const usePosts = () => {
   const dispatch = useDispatch();
@@ -16,7 +14,7 @@ const usePosts = () => {
   }, [token]);
 
   const clearPosts = () => {
-    dispatch(postsClear());
+    dispatch(postsSlice.actions.postsClear());
   };
 
   return { loading, posts, clearPosts };

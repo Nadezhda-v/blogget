@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postsRequestAsync } from '../../../store/posts/postsAction';
 import { Outlet, useParams } from 'react-router-dom';
+import { postsSlice } from '../../../store/posts/postsSlice';
 
 export const List = () => {
   const posts = useSelector((state) => state.posts.data);
@@ -15,6 +16,7 @@ export const List = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
+    dispatch(postsSlice.actions.changePage(page));
     setAutoLoadCount(0);
     setShowButton(false);
     dispatch(postsRequestAsync(page));
