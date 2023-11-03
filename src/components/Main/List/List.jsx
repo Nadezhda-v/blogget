@@ -3,8 +3,9 @@ import Post from './Post';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postsRequestAsync } from '../../../store/posts/postsAction';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { postsSlice } from '../../../store/posts/postsSlice';
+import { LIST } from '../Tabs/Tabs';
 
 export const List = () => {
   const posts = useSelector((state) => state.posts.data);
@@ -14,8 +15,15 @@ export const List = () => {
   const { page } = useParams();
   const [autoLoadCount, setAutoLoadCount] = useState(0);
   const [showButton, setShowButton] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const isValidPage = (page) => LIST.some(item => item.link === page);
+
+    if (!isValidPage(page)) {
+      navigate('*');
+    }
+
     dispatch(postsSlice.actions.changePage(page));
     setAutoLoadCount(0);
     setShowButton(false);
@@ -56,7 +64,7 @@ export const List = () => {
   return (
     <>
       <ul className={style.list}>
-        {posts.map(({ data }) => (
+        {posts && posts.map(({ data }) => (
           <Post key={data.id} postData={data} />
         ))}
 
