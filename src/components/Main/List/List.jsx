@@ -10,6 +10,7 @@ import { LIST } from '../Tabs/Tabs';
 export const List = () => {
   const posts = useSelector((state) => state.posts.data);
   const after = useSelector((state) => state.posts.after);
+  const search = useSelector((state) => state.posts.search);
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
@@ -18,17 +19,20 @@ export const List = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isValidPage = (page) => LIST.some(item => item.link === page);
+    if (page) {
+      const isValidPage = (page) => LIST.some(item => item.link === page);
 
-    if (!isValidPage(page)) {
-      navigate('*');
+      if (!isValidPage(page)) {
+        navigate('*');
+      }
+
+      dispatch(postsSlice.actions.changePage(page));
     }
 
-    dispatch(postsSlice.actions.changePage(page));
     setAutoLoadCount(0);
     setShowButton(false);
-    dispatch(postsRequestAsync(page));
-  }, [page]);
+    dispatch(postsRequestAsync({ newPage: page, search }));
+  }, [page, search]);
 
   useEffect(() => {
     if (autoLoadCount >= 2) {
@@ -44,7 +48,11 @@ export const List = () => {
 
       if (entries[0].isIntersecting) {
         setAutoLoadCount((prevCount) => prevCount + 1);
-        dispatch(postsRequestAsync());
+        if (page) {
+          dispatch(postsRequestAsync({ newPage: page }));
+        } else {
+          dispatch(postsRequestAsync({ search }));
+        }
       }
     }, {
       rootMargin: '100px',
@@ -77,7 +85,7 @@ export const List = () => {
         <div className={style.buttonWrapper}>
           <button
             className={style.button}
-            onClick={() => dispatch(postsRequestAsync())}
+            onClick={() => dispatch(postsRequestAsync({}))}
           >
             Загрузить ещё
           </button>

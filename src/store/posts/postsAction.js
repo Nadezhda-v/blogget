@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const postsRequestAsync = createAsyncThunk(
   'posts/axios',
   (params, { getState }) => {
-    const { newPage, search } = params;
+    const { newPage, search } = params || {};
     let page = getState().posts.page;
 
     if (newPage) {

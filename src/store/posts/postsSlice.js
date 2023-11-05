@@ -8,6 +8,7 @@ const initialState = {
   after: '',
   isLast: false,
   page: '',
+  search: '',
 };
 
 export const postsSlice = createSlice({
@@ -21,11 +22,16 @@ export const postsSlice = createSlice({
       state.after = '';
       state.isLast = false;
       state.page = '';
+      state.search = '';
     },
     changePage: (state, action) => {
       state.after = '';
       state.isLast = false;
       state.page = action.payload.page;
+      state.search = '';
+    },
+    setSearch: (state, action) => {
+      state.search = action.payload;
     },
   },
   extraReducers: {
@@ -43,7 +49,7 @@ export const postsSlice = createSlice({
     },
     [postsRequestAsync.rejected.type]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.error;
+      state.error = action.error;
     },
   }
 });
