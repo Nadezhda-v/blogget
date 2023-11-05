@@ -2,13 +2,14 @@ import style from './Search.module.css';
 import { SvgIcon } from '../../../UI/Svg';
 import { useDispatch } from 'react-redux';
 import { postsRequestAsync } from '../../../store/posts/postsAction';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { postsSlice } from '../../../store/posts/postsSlice';
 import { useEffect, useState } from 'react';
 
 export const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [search, setSearch] = useState('');
   const isSearchPage = location.pathname === '/search';
 

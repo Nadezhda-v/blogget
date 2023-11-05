@@ -28,6 +28,8 @@ export const postsRequestAsync = createAsyncThunk(
         `&after=${after}` : ''}`;
     }
 
+    console.log('url: ', url);
+
     return axios(`${url}`, {
       headers: {
         'Content-Type': 'application/json',

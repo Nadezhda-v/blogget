@@ -14,7 +14,9 @@ export const List = () => {
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
-  const [autoLoadCount, setAutoLoadCount] = useState(0);
+  // const [autoLoadCount, setAutoLoadCount] = useState(0);
+  const [observeEndList, setObserveEndList] = useState(true);
+  const autoLoadCount = useRef(0);
   const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
 
@@ -29,25 +31,31 @@ export const List = () => {
       dispatch(postsSlice.actions.changePage(page));
     }
 
-    setAutoLoadCount(0);
+    autoLoadCount.current = 0;
+    setObserveEndList(true);
     setShowButton(false);
     dispatch(postsRequestAsync({ newPage: page, search }));
   }, [page, search]);
 
   useEffect(() => {
-    if (autoLoadCount >= 2) {
+    console.log('autoLoadCount: ', autoLoadCount.current);
+    if (autoLoadCount.current >= 2) {
       setShowButton(true);
+      return;
+    } else {
+      setObserveEndList(true);
     }
 
     if (!endList.current) return;
 
     const observer = new IntersectionObserver((entries) => {
-      if (autoLoadCount >= 2) {
-        observer.unobserve(endList.current);
+      if (autoLoadCount.current >= 2) {
+        setObserveEndList(false);
       }
 
       if (entries[0].isIntersecting) {
-        setAutoLoadCount((prevCount) => prevCount + 1);
+        autoLoadCount.current += 1;
+        console.log('autoLoadCount.current: ', autoLoadCount.current);
         if (page) {
           dispatch(postsRequestAsync({ newPage: page }));
         } else {
@@ -76,16 +84,23 @@ export const List = () => {
           <Post key={data.id} postData={data} />
         ))}
 
-        {autoLoadCount < 2 && (
+        {autoLoadCount.current < 2 && observeEndList ? (
           <li className={style.lastItem} ref={endList} />
-        )}
+        ) : <></>}
       </ul>
 
       {showButton && after ? (
         <div className={style.buttonWrapper}>
           <button
             className={style.button}
-            onClick={() => dispatch(postsRequestAsync({}))}
+            onClick={() => {
+              autoLoadCount.current = 0;
+              if (page) {
+                dispatch(postsRequestAsync({ newPage: page }));
+              } else {
+                dispatch(postsRequestAsync({ search }));
+              }
+            }}
           >
             Загрузить ещё
           </button>
