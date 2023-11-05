@@ -42,7 +42,6 @@ export const authRequestAsync = () => (dispatch, getState) => {
       dispatch(authRequestSuccess(data));
     })
     .catch((err) => {
-      console.log(err);
       dispatch(deleteToken());
       dispatch(authRequestError(err.toString()));
     });

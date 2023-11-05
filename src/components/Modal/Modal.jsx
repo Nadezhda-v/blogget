@@ -19,7 +19,7 @@ export const Modal = () => {
   const [showButton, setShowButton] = useState(true);
 
   const handleButtonClose = () => {
-    navigate(`/category/${page}`);
+    page ? navigate(`/category/${page}`) : navigate('/search');
   };
 
   const handleCloseOverlay = (e) => {

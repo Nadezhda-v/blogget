@@ -14,7 +14,6 @@ export const List = () => {
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
-  // const [autoLoadCount, setAutoLoadCount] = useState(0);
   const [observeEndList, setObserveEndList] = useState(true);
   const autoLoadCount = useRef(0);
   const [showButton, setShowButton] = useState(false);
@@ -38,12 +37,9 @@ export const List = () => {
   }, [page, search]);
 
   useEffect(() => {
-    console.log('autoLoadCount: ', autoLoadCount.current);
     if (autoLoadCount.current >= 2) {
       setShowButton(true);
       return;
-    } else {
-      setObserveEndList(true);
     }
 
     if (!endList.current) return;
@@ -53,21 +49,18 @@ export const List = () => {
         setObserveEndList(false);
       }
 
-      if (entries[0].isIntersecting) {
+      if (entries[0].isIntersecting && after) {
         autoLoadCount.current += 1;
-        console.log('autoLoadCount.current: ', autoLoadCount.current);
-        if (page) {
-          dispatch(postsRequestAsync({ newPage: page }));
-        } else {
-          dispatch(postsRequestAsync({ search }));
-        }
+        dispatch(postsRequestAsync({ newPage: page, search }));
       }
     }, {
       rootMargin: '100px',
     });
 
-    if (endList.current) {
+    if (endList.current && observeEndList) {
       observer.observe(endList.current);
+    } else {
+      observer.unobserve(endList.current);
     }
 
     return () => {

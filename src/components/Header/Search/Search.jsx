@@ -31,14 +31,6 @@ export const Search = () => {
     }
   };
 
-  useEffect(() => {
-    if (isSearchPage) {
-      const currentSearch = location.search;
-      const searchParam = new URLSearchParams(currentSearch).get('q');
-      setSearch(searchParam || '');
-    }
-  }, [location.search, isSearchPage]);
-
   const handleTextSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -70,7 +62,8 @@ export const Search = () => {
         onClick={handleSubmit}
         type='submit'
       >
-        <SvgIcon className={style.svg} src='./img/header/search.svg' />
+        <SvgIcon className={`${style.svg} ${style.svgSearch}`}
+          src='./img/header/search.svg' />
       </button>
     </div>
   );
