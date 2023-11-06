@@ -19,7 +19,7 @@ export const Modal = () => {
   const [showButton, setShowButton] = useState(true);
 
   const handleButtonClose = () => {
-    navigate(`/category/${page}`);
+    page ? navigate(`/category/${page}`) : navigate('/search');
   };
 
   const handleCloseOverlay = (e) => {
@@ -48,7 +48,7 @@ export const Modal = () => {
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
         {status === 'loading' && (
-          <Preloader color={'#cc6633'} size={60} />
+          <Preloader color={'#4a4d7a'} size={60} />
         )}
         {status === 'error' && (
           <Text size={14} tsize={18}>

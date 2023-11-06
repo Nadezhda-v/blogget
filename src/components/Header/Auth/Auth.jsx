@@ -32,7 +32,7 @@ export const Auth = () => {
   return (
     <div className={style.container}>
       {loading ? (
-        <Preloader color={'#cc6633'} size={40} />
+        <Preloader color={'#4a4d7a'} size={40} />
       ) : auth.name ?
         (<div className={style.btn} onClick={handleAvatarClick}>
           <img

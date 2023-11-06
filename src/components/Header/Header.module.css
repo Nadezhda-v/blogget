@@ -1,17 +1,16 @@
 .header {
   padding: 15px 0;
-  background-color: var(--greyE6);
+  background-color: var(--greyBF);
   position: relative;
   z-index: 10;
 }
 
 .gridContainer {
   display: grid;
-  grid-template-columns: 30px 2fr 30px;
+  grid-template-columns: 30px 2fr 40px;
   align-items: center;
   gap: 15px;
 }
-
 
 @media (min-width: 768px) {
   .header {

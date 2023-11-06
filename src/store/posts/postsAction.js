@@ -4,7 +4,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const postsRequestAsync = createAsyncThunk(
   'posts/axios',
-  (newPage, { getState }) => {
+  (params, { getState }) => {
+    const { newPage, search } = params || {};
     let page = getState().posts.page;
 
     if (newPage) {
@@ -20,7 +21,14 @@ export const postsRequestAsync = createAsyncThunk(
       return { data: prevPosts, after, page };
     }
 
-    return axios(`${URL}/${page}?limit=10${after ? `&after=${after}` : ''}`, {
+    let url = `${URL}/${page}?limit=10${after ? `&after=${after}` : ''}`;
+
+    if (search) {
+      url = `${URL}/search?q=${search}&limit=10${after ?
+        `&after=${after}` : ''}`;
+    }
+
+    return axios(`${url}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `bearer ${token}`,

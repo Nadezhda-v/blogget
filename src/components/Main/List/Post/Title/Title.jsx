@@ -8,7 +8,10 @@ export const Title = ({ title, id }) => {
 
   return (
     <Text As='h2' className={style.title}>
-      <Link className={style.linkPost} to={`/category/${page}/post/${id}`}>
+      <Link
+        className={style.linkPost}
+        to={page ? `/category/${page}/post/${id}` : `/search/post/${id}`}
+      >
         <Text
           size={14}
           tsize={22}

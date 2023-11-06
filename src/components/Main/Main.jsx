@@ -10,7 +10,8 @@ import { AppLayout } from '../AppLayout/AppLayout';
 
 export const Main = () => {
   const location = useLocation();
-  const isCategoryPage = location.pathname.includes('/category/');
+  const isCategoryPage = location.pathname.includes('/category/') ||
+    location.pathname.includes('/search');
 
   return (
     <main className={`${style.main} ${isCategoryPage ?
@@ -21,6 +22,9 @@ export const Main = () => {
           <Route path='/' element={<AppLayout />} />
           <Route path='/auth' element={<StartPage />} />
           <Route path='/category/:page' element={<List />}>
+            <Route path='post/:id' element={<Modal />} />
+          </Route>
+          <Route path='/search' element={<List />}>
             <Route path='post/:id' element={<Modal />} />
           </Route>
           <Route path='*' element={<PageError />} />

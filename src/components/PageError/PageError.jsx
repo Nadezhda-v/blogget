@@ -3,7 +3,6 @@ import style from './PageError.module.css';
 
 export const PageError = () => {
   const navigate = useNavigate();
-  console.log(style);
 
   return (
     <div className={style.center}>

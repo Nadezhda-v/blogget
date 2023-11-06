@@ -10,48 +10,62 @@ import { LIST } from '../Tabs/Tabs';
 export const List = () => {
   const posts = useSelector((state) => state.posts.data);
   const after = useSelector((state) => state.posts.after);
+  const search = useSelector((state) => state.posts.search);
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
-  const [autoLoadCount, setAutoLoadCount] = useState(0);
+  const [observeEndList, setObserveEndList] = useState(true);
+  const autoLoadCount = useRef(0);
   const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isValidPage = (page) => LIST.some(item => item.link === page);
+    if (page) {
+      const isValidPage = (page) => LIST.some(item => item.link === page);
 
-    if (!isValidPage(page)) {
-      navigate('*');
+      if (!isValidPage(page)) {
+        navigate('*');
+      }
+
+      dispatch(postsSlice.actions.changePage(page));
     }
 
-    dispatch(postsSlice.actions.changePage(page));
-    setAutoLoadCount(0);
+    autoLoadCount.current = 0;
+    setObserveEndList(true);
     setShowButton(false);
-    dispatch(postsRequestAsync(page));
-  }, [page]);
+
+    if (page) {
+      dispatch(postsRequestAsync({ newPage: page }));
+    } else {
+      dispatch(postsRequestAsync({ search }));
+    }
+  }, [page, search]);
 
   useEffect(() => {
-    if (autoLoadCount >= 2) {
+    if (autoLoadCount.current >= 2) {
       setShowButton(true);
+      return;
     }
 
     if (!endList.current) return;
 
     const observer = new IntersectionObserver((entries) => {
-      if (autoLoadCount >= 2) {
-        observer.unobserve(endList.current);
+      if (autoLoadCount.current >= 2) {
+        setObserveEndList(false);
       }
 
-      if (entries[0].isIntersecting) {
-        setAutoLoadCount((prevCount) => prevCount + 1);
-        dispatch(postsRequestAsync());
+      if (entries[0].isIntersecting && after) {
+        autoLoadCount.current += 1;
+        dispatch(postsRequestAsync({ newPage: page, search }));
       }
     }, {
       rootMargin: '100px',
     });
 
-    if (endList.current) {
+    if (endList.current && observeEndList) {
       observer.observe(endList.current);
+    } else {
+      observer.unobserve(endList.current);
     }
 
     return () => {
@@ -68,16 +82,23 @@ export const List = () => {
           <Post key={data.id} postData={data} />
         ))}
 
-        {autoLoadCount < 2 && (
+        {autoLoadCount.current < 2 && observeEndList ? (
           <li className={style.lastItem} ref={endList} />
-        )}
+        ) : <></>}
       </ul>
 
       {showButton && after ? (
         <div className={style.buttonWrapper}>
           <button
             className={style.button}
-            onClick={() => dispatch(postsRequestAsync())}
+            onClick={() => {
+              autoLoadCount.current = 0;
+              if (page) {
+                dispatch(postsRequestAsync({ newPage: page }));
+              } else {
+                dispatch(postsRequestAsync({ search }));
+              }
+            }}
           >
             Загрузить ещё
           </button>
