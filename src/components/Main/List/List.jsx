@@ -54,9 +54,16 @@ export const List = () => {
         setObserveEndList(false);
       }
 
-      if (entries[0].isIntersecting && after) {
-        autoLoadCount.current += 1;
-        dispatch(postsRequestAsync({ newPage: page, search }));
+      if (page) {
+        if (entries[0].isIntersecting) {
+          autoLoadCount.current += 1;
+          dispatch(postsRequestAsync({ newPage: page }));
+        }
+      } else {
+        if (entries[0].isIntersecting && after) {
+          autoLoadCount.current += 1;
+          dispatch(postsRequestAsync({ search }));
+        }
       }
     }, {
       rootMargin: '100px',
