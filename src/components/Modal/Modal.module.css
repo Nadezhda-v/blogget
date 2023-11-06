@@ -36,7 +36,7 @@
 }
 
 .content a {
-  color: var(--orange);
+  color: var(--violet);
 }
 
 .close {
@@ -54,7 +54,7 @@
   padding: 10px 20px;
   border-radius: 8px;
   outline: none;
-  background-color: var(--orange);
+  background-color: var(--violet);
   color: var(--white);
   border: 1px solid transparent
 }

@@ -19,7 +19,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: var(--orange);
+  background-color: var(--violet);
   border: 0;
   color: var(--white);
   padding: 4px;
@@ -48,21 +48,21 @@
 }
 
 .authLink:hover {
-  outline-color: var(--orange);
+  outline-color: var(--violet);
 }
 
 .authLink:focus {
-  outline-color: var(--orange);
+  outline-color: var(--violet);
 }
 
 .authLink:active {
-  outline-color: var(--orange);
+  outline-color: var(--violet);
 }
 
 .svg {
   width: 100%;
   height: 100%;
-  color: var(--orange);
+  color: var(--blue-dark);
 }
 
 @media (min-width: 768px) {

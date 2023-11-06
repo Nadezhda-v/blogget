@@ -5,7 +5,7 @@ import { Text } from '../../../../../UI/Text';
 export const Author = ({ author }) => (
   <Text
     As='a'
-    color='orange'
+    color='violet'
     size={10}
     tsize={14}
     className={style.linkAuthor}

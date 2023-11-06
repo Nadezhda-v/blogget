@@ -23,7 +23,7 @@
   width: 30px;
   height: 30px;
   border: 0;
-  background-color: var(--orange);
+  background-color: var(--violet);
 }
 
 .buttonClear{
@@ -42,7 +42,7 @@
 .svg {
   width: 100%;
   height: 100%;
-  fill: var(--orange);
+  fill: var(--black);
 }
 
 .svgSearch {
@@ -89,6 +89,6 @@
   }
 
   .svg:hover {
-    color: var(--black);
+    color: var(--blue-dark);
   }
 }
