@@ -1,0 +1,36 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 20px;
+}
+
+.lastItem {
+  flex-basis: 100%;
+}
+
+.button {
+  background-color: var(--violet);
+  border: none;
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: filter 0.3s;
+}
+
+.buttonWrapper {
+  text-align: center;
+}
+
+.button:hover {
+  filter: saturate(150%);
+}
+
+@media (max-width: 580px) {
+  .button {
+    font-size: 12px;
+  }
+}

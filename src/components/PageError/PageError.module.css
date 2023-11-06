@@ -1,0 +1,262 @@
+:root {
+  --black: #000;
+  --blue: #333333;
+  --pink: #fdabaf;
+  --pink-light: #ffe0e6;
+  --orange: #cc6633;
+  --orange-light: #efa244;
+  --white: white;
+}
+
+.center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.error {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.number {
+  font-weight: 900;
+  font-size: 10rem;
+  line-height: 1;
+  color: var(--black);
+}
+
+.illustration {
+  position: relative;
+  width: 9.2rem;
+  margin: 0 2.1rem;
+}
+
+.circle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 9.2rem;
+  height: 8.6rem;
+  border-radius: 50%;
+  background-color: var(--blue);
+}
+
+.clip {
+  position: absolute;
+  bottom: 0.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  width: 9.5rem;
+  height: 9.7rem;
+  border-radius: 0 0 50% 50%;
+}
+
+.paper {
+  position: absolute;
+  bottom: -0.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7rem;
+  height: 9.5rem;
+  border: 0.3rem solid var(--blue);
+  background-color: var(--white);
+  border-radius: 0.8rem;
+}
+
+.face {
+  position: relative;
+  margin-top: 2.3rem;
+}
+
+.eyes {
+  position: absolute;
+  top: 0;
+  left: 1.6rem;
+  width: 3.5rem;
+  height: 0.6rem;
+}
+
+.eye {
+  position: absolute;
+  bottom: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background-color: var(--blue);
+  animation-name: eye;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.eyeLeft {
+  left: 0;
+}
+
+.eyeRight {
+  right: 0;
+}
+
+@keyframes eye {
+  0% {
+    height: 0.6rem;
+  }
+
+  50% {
+    height: 0.6rem;
+  }
+
+  52% {
+    height: 0.1rem;
+  }
+
+  54% {
+    height: 0.6rem;
+  }
+
+  100% {
+    height: 0.6rem;
+  }
+}
+
+.rosyCheeks {
+  position: absolute;
+  top: 1.4rem;
+  width: 0.8rem;
+  height: 0.2rem;
+  border-radius: 50%;
+  background-color: var(--pink);
+}
+
+.rosyCheeksLeft {
+  left: 1rem;
+}
+
+.rosyCheeksRight {
+  right: 1rem;
+}
+
+.mouth {
+  position: absolute;
+  top: 2.6rem;
+  left: 50%;
+  width: 1.6rem;
+  height: 0.2rem;
+  border-radius: 0.1rem;
+  transform: translateX(-50%);
+  background-color: var(--blue);
+}
+
+.text {
+  margin-top: 5rem;
+  font-weight: 300;
+  color: var(--black);
+  font-size: 1.2rem;
+}
+
+.button {
+  margin-top: 4rem;
+  padding: 1.2rem 3rem;
+  color: var(--white);
+  background-color: var(--violet);
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: var(--blue-dark);
+}
+
+.by {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.byLink {
+  color: var(--violet);
+}
+
+@media (max-width: 580px) {
+  .text {
+    font-size: 0.8rem;
+    margin-top: 3rem;
+  }
+
+  .number {
+    font-size: 8rem;
+  }
+  
+  .illustration {
+    width: 6.8rem;
+    margin: 0 1.1rem;
+  }
+  
+  .circle {
+    width: 6.8rem;
+    height: 6.4rem;
+  }
+  
+  .clip {
+    bottom: 0.2rem;
+    width: 7rem;
+    height: 7.3rem;
+  }
+  
+  .paper {
+    bottom: -0.2rem;
+    width: 5.2rem;
+    height: 7rem;
+    border: 0.2rem solid var(--blue);
+    border-radius: 0.6rem;
+  }
+
+  .eyes {
+    top: -0.8rem;
+    left: 1.2rem;
+    width: 2.5rem;
+    height: 0.6rem;
+  }
+
+  .eyeLeft {
+    left: 0;
+  }
+  
+  .eyeRight {
+    right: 0;
+  }
+
+  .rosyCheeks {
+    top: 0.5rem;
+    width: 0.6rem;
+    height: 0.2rem;
+  }
+  
+  .rosyCheeksLeft {
+    left: 0.8rem;
+  }
+  
+  .rosyCheeksRight {
+    right: 0.8rem;
+  }
+
+  .mouth {
+    top: 1.5rem;
+    left: 50%;
+    width: 1.1rem;
+    height: 0.12rem;
+  }
+
+  .button {
+    margin-top: 3rem;
+  }
+}

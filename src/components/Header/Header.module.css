@@ -1,0 +1,24 @@
+.header {
+  padding: 15px 0;
+  background-color: var(--greyBF);
+  position: relative;
+  z-index: 10;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 30px 2fr 40px;
+  align-items: center;
+  gap: 15px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 30px;
+  }
+
+  .gridContainer {
+    grid-template-columns: 55px 1fr 2fr 55px;
+    gap: 50px;
+  }
+}
