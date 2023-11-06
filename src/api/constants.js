@@ -4,7 +4,7 @@ const URL_AUTH = `${BASE_URL}/api/v1/authorize?`;
 const CLIENT_ID = '6PWXmr_-vBLTZdJBvsb20w';
 const RESPONSE_TYPE = 'token';
 const RANDOM_STRING = 'random_string';
-const REDIRECT_URI = 'http://localhost:3000/auth';
+const REDIRECT_URI = 'https://blogget-ten.vercel.app/auth';
 const SCOPE_STRING = 'identity read submit';
 const TOKEN_TYPE_HINT = 'access_token';
 
