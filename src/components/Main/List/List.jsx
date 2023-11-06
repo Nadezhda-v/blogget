@@ -33,7 +33,12 @@ export const List = () => {
     autoLoadCount.current = 0;
     setObserveEndList(true);
     setShowButton(false);
-    dispatch(postsRequestAsync({ newPage: page, search }));
+
+    if (page) {
+      dispatch(postsRequestAsync({ newPage: page }));
+    } else {
+      dispatch(postsRequestAsync({ search }));
+    }
   }, [page, search]);
 
   useEffect(() => {

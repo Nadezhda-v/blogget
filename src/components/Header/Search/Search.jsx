@@ -37,7 +37,7 @@ export const Search = () => {
 
   const handleClearSearch = () => {
     setSearch('');
-    dispatch(postsSlice.actions.setSearch(''));
+    dispatch(postsSlice.actions.setSearch(search));
   };
 
   return (
