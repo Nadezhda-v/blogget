@@ -9,10 +9,10 @@ import { Text } from '../../../UI/Text';
 import { useNavigate } from 'react-router-dom';
 
 export const LIST = [
-  { value: 'Главная', Icon: './img/home.svg', link: 'rising' },
-  { value: 'Топ', Icon: './img/top.svg', link: 'top' },
-  { value: 'Лучшие', Icon: './img/best.svg', link: 'best' },
-  { value: 'Горячие', Icon: './img/hot.svg', link: 'hot' },
+  { value: 'Главная', Icon: '../../img/home.svg', link: 'rising' },
+  { value: 'Топ', Icon: '../../img/top.svg', link: 'top' },
+  { value: 'Лучшие', Icon: '../../img/best.svg', link: 'best' },
+  { value: 'Горячие', Icon: '../../img/hot.svg', link: 'hot' },
 ].map(assignId);
 
 export const Tabs = () => {

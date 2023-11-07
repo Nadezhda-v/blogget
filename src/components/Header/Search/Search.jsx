@@ -54,7 +54,7 @@ export const Search = () => {
           onClick={handleClearSearch}
           type='button'
         >
-          <SvgIcon className={style.svg} src='./img/header/clear.svg' />
+          <SvgIcon className={style.svg} src='../../img/header/clear.svg' />
         </button>
       </form>
 
@@ -63,7 +63,7 @@ export const Search = () => {
         type='submit'
       >
         <SvgIcon className={`${style.svg} ${style.svgSearch}`}
-          src='./img/header/search.svg' />
+          src='../../img/header/search.svg' />
       </button>
     </div>
   );

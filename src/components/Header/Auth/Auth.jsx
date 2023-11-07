@@ -53,7 +53,7 @@ export const Auth = () => {
         </div>) :
         (<Text className={style.authLink} As='a' href={urlAuth}>
           <SvgIcon
-            src='./img/header/login.svg'
+            src='../../img/header/login.svg'
             className={style.svg}
           />
         </Text>

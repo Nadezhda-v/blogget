@@ -43,7 +43,7 @@
   --blue-dark: #23275d;
   --violet: #4a4d7a;
   --white: hsl(0, 0%, 100%);
-  --grayF5: hsl(0, 0%, 96%);
+  --greyF5: hsl(0, 0%, 96%);
   --greyED: hsl(0, 0%, 93%);
   --greyE6: hsl(0, 0%, 90%);
   --greyD9: hsl(0, 0%, 85%);
@@ -70,7 +70,7 @@ body {
   font-family: Merriweather Sans, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  background-color: var(--grayF5);
+  background-color: var(--greyF5);
   color: var(--black);
   overflow-x: hidden;
 }
