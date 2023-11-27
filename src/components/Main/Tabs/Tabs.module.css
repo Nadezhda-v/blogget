@@ -3,6 +3,7 @@
   position: relative;
   z-index: 15;
   margin-bottom: 30px;
+  border-radius: 8px;
 }
 
 .wrapperBtn {
@@ -20,6 +21,7 @@
   justify-content: space-between;
   gap: 10px;
   background-color: var(--white);
+  font-size: 1.1rem;
 }
 
 .btn:hover {

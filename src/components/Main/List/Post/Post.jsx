@@ -5,7 +5,6 @@ import Author from './Author';
 import Raiting from './Raiting';
 import Title from './Title';
 import Date from './Date';
-import { ReactComponent as DeleteIcon } from './img/delete.svg';
 
 export const Post = ({ postData }) => {
   const {
@@ -29,10 +28,6 @@ export const Post = ({ postData }) => {
 
       <Raiting ups={ups} />
       <Date date={date} />
-
-      <button className={style.delete}>
-        <DeleteIcon />
-      </button>
     </li>
   );
 };

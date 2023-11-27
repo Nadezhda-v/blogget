@@ -1,6 +1,6 @@
 .header {
   padding: 15px 0;
-  background-color: var(--greyBF);
+  background-color: rgb(123 106 202 / 30%);
   position: relative;
   z-index: 10;
 }

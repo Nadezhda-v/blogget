@@ -5,7 +5,8 @@
 }
 
 .title {
-  font-size: 5rem;
+  font-family: Shadows Into Light;
+  font-size: 6rem;
   font-weight: bold;
   color: var(--blue-dark);
   text-shadow: 2px 2px 4px rgb(255, 255, 255);
@@ -13,7 +14,8 @@
 }
 
 .text {
-  font-size: 1.4rem;
+  font-family: Philosopher;
+  font-size: 1.6rem;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgb(16, 16, 16);
   max-width: 500px;

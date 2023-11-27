@@ -1,39 +1,30 @@
 @import "~normalize.css";
 
 @font-face {
-  font-family: "Merriweather Sans";
+  font-family: "Shadows Into Light";
   font-style: normal;
   font-weight: 400;
   src: local(""),
-    url("fonts/merriweather-sans-v20-latin_cyrillic-ext-regular.woff2")
-      format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/merriweather-sans-v20-latin_cyrillic-ext-regular.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url("fonts/Shadows-regular.ttf")
+      format("truetype"),
 }
 
 @font-face {
-  font-family: "Merriweather Sans";
+  font-family: "Philosopher";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   src: local(""),
-    url("fonts/merriweather-sans-v20-latin_cyrillic-ext-500.woff2")
-      format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/merriweather-sans-v20-latin_cyrillic-ext-500.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url("fonts/Philosopher-regular.ttf")
+      format("truetype"),
 }
 
 @font-face {
-  font-family: "Merriweather Sans";
+  font-family: "Nunito Sans";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   src: local(""),
-    url("fonts/merriweather-sans-v20-latin_cyrillic-ext-700.woff2")
-      format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/merriweather-sans-v20-latin_cyrillic-ext-700.woff")
-      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url("fonts/NunitoSans_7pt_Condensed-regular.ttf")
+      format("truetype"),
 }
 
 :root {
@@ -67,7 +58,7 @@ html {
 body {
   min-width: 320px;
   min-height: 100vh;
-  font-family: Merriweather Sans, sans-serif;
+  font-family: Nunito Sans, sans-serif;
   font-size: 16px;
   font-weight: 400;
   background-color: var(--greyF5);
